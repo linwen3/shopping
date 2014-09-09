@@ -105,7 +105,13 @@ if ($this->_foreach['nav_top_list']['total'] > 0):
           </input>
         </form>
       </div>
+
+      <div class="mini-cart">
+        查看购物车<s></s>
+      </div>
     </div>
+    
+
     <p id="hotKeywordsShow" class="hd_hot_search"> <?php if ($this->_var['searchkeywords']): ?> <span><?php echo $this->_var['lang']['hot_search']; ?> ：</span> <?php $_from = $this->_var['searchkeywords']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'val');if (count($_from)):
     foreach ($_from AS $this->_var['val']):
 ?> <a href="search.php?keywords=<?php echo urlencode($this->_var['val']); ?>"><?php echo $this->_var['val']; ?></a> <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
@@ -126,14 +132,7 @@ if ($this->_foreach['nav_middle_list']['total'] > 0):
       
       <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
       
-      <div class="mini_cart clearfix">
-        <div class="minicart_box"><a href="./flow.php" class="mini_cart_btn">购物车<span class="cart_num" id="ECS_CARTINFO"><?php 
-$k = array (
-  'name' => 'cart_info',
-);
-echo $this->_echash . $k['name'] . '|' . serialize($k) . $this->_echash;
-?></span></a> </div>
-      </div>
+  
     </div>
   </div>
 </div>
