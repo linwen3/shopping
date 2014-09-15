@@ -20,9 +20,9 @@ div{margin:0 auto; padding:0;}
 h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,form,img,p{
 margin:0; padding:0; border:none; list-style-type:none;
 }
-.block{width:1210px;  margin:0 auto;}
+.block{width:1190px;  margin:0 auto;}
 
-.index_body .block{width:1210px;   margin:0 auto;}
+.index_body .block{width:1190px;   margin:0 auto;}
  .table td,.table th{ padding:5px;}
 
 .f_l{float:left;}
@@ -301,7 +301,7 @@ font-size: 14px; font-weight:bold}
 /*页面主导航*/
 .menu_box{
   margin:0 auto;
-  width: 1210px;
+  width: 1190px;
   background:#E60012;
   height:40px;
   height: 40px;
@@ -386,10 +386,15 @@ font-size: 14px; font-weight:bold}
 	
 	
 	
-	.sale_box{ border:1px solid #e3e3e3; background:url(images/sale_bg.gif) repeat-x #f8f8f8; padding:10px; width:958px; float:right }
-	.sale_box .tit{ font-size:14px; font-weight:bold; padding:5px 15px 0 15px;  }
-	.sale_box ul{ float:left; width:205px; height:262px; padding:15px; line-height:22px;}
-	.sale_box ul img{ width:200px; height:200px;}
+	.sale_box{position: relative;margin-left: 1px; border:1px solid #e3e3e3; width:698px; height: 160px; }
+  .sale_box .pre,  .sale_box .next{position: absolute; top: 50%; z-index: 1}
+  .sale_box .pre{left: 0px;}
+  .sale_box .next{right: 0px;}
+  .sale_box li{float: left; border-right: 1px solid #e3e3e3;}
+  .sale_box .first-node{margin-left: -1px;}
+/*	.sale_box .tit{ font-size:14px; font-weight:bold; padding:5px 15px 0 15px;  }*/
+/*	.sale_box ul{ float:left; width:205px; height:262px; padding:15px; line-height:22px;}*/
+/*	.sale_box ul img{ width:200px; height:200px;}*/
 	
 	
    

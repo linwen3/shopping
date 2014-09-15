@@ -778,17 +778,23 @@ var process_request = "正在处理您的请求...";
 <div class="blank"></div>
     
   </div>
-<div style="float:right; width:1018px;"> 
+
+<div style="float:right; width:998px;">
+<div class="container-wrap"> 
  
 <style type="text/css"> 
+.container-wrap{float: left; width: 700px; overflow: hidden;}
 .container, .container *{margin:0; padding:0;}
-.container{width:700px; height:320px; overflow:hidden;position:relative;}
-.slider{position:absolute;}
-.slider li{list-style:none;display:inline;}
-.slider img{width:994px; height:410px; display:block;}
+.container{width:700px; height:331px; overflow:hidden;position:relative;}
+.slider{position:absolute; width:2100px;}
+.slider li{float: left; list-style:none;display:inline;}
+.slider img{width:700px; height:331px; display:block;}
 .slider2{width:2000px;}
 .slider2 li{float:left;}
-.num{position:absolute; right:5px; bottom:5px;}
+.num{position:absolute; left: 50%;  bottom:5px;}
+.num ul{
+  margin-left: -50%;
+}
 .num li{
 	float: left;
 	color: #333;
@@ -818,12 +824,19 @@ var process_request = "正在处理您的请求...";
 </style>
 <div class="container" id="idTransformView">
   <ul class="slider" id="idSlider">
-    </ul>
-  <ul class="num" id="idNum">
- 
-    
-         
+    <li><a href="#"><img src="demo-img/hot1.png" /></a></li>
+    <li><a href="#"><img src="demo-img/hot1.png" /></a></li>
+    <li><a href="#"><img src="demo-img/hot1.png" /></a></li>
   </ul>
+  <div class="num">
+    <ul  id="idNum">
+      <li></li>
+      <li></li>
+      <li></li>
+      
+           
+    </ul>
+  </div>
 </div>
 <script type="text/javascript">
 var $ = function (id) {
@@ -875,7 +888,7 @@ TransformView.prototype = {
   //设置默认属性
   SetOptions: function(options) {
 	this.options = {//默认值
-		Up:			true,//是否向上(否则向左)
+		Up:			false,//是否向上(否则向左)
 		Step:		5,//滑动变化率
 		Time:		10,//滑动延时
 		Auto:		true,//是否自动转换
@@ -929,7 +942,7 @@ window.onload=function(){
 	
 	var objs = $("idNum").getElementsByTagName("li");
 	
-	var tv = new TransformView("idTransformView", "idSlider", 410, 3, {
+	var tv = new TransformView("idTransformView", "idSlider", 700, 3, {
 		onStart : function(){ Each(objs, function(o, i){o.className = tv.Index == i ? "on" : "";}) }//按钮样式
 	});
 	
@@ -951,74 +964,205 @@ window.onload=function(){
 	
 	////////////////////////test2
 	
-	var objs2 = $("idNum2").getElementsByTagName("li");
+	// var objs2 = $("idNum2").getElementsByTagName("li");
 	
-	var tv2 = new TransformView("idTransformView2", "idSlider2", 994, 3, {
-		onStart: function(){ Each(objs2, function(o, i){o.className = tv2.Index == i ? "on" : "";}) },//按钮样式
-		Up: false
-	});
+	// var tv2 = new TransformView("idTransformView2", "idSlider2", 700, 3, {
+	// 	onStart: function(){ Each(objs2, function(o, i){o.className = tv2.Index == i ? "on" : "";}) },//按钮样式
+	// 	Up: false
+	// });
 	
-	tv2.Start();
+	// tv2.Start();
 	
-	Each(objs2, function(o, i){
-		o.onmouseover = function(){
-			o.className = "on";
-			tv2.Auto = false;
-			tv2.Index = i;
-			tv2.Start();
-		}
-		o.onmouseout = function(){
-			o.className = "";
-			tv2.Auto = true;
-			tv2.Start();
-		}
-	})
+	// Each(objs2, function(o, i){
+	// 	o.onmouseover = function(){
+	// 		o.className = "on";
+	// 		tv2.Auto = false;
+	// 		tv2.Index = i;
+	// 		tv2.Start();
+	// 	}
+	// 	o.onmouseout = function(){
+	// 		o.className = "";
+	// 		tv2.Auto = true;
+	// 		tv2.Start();
+	// 	}
+	// })
 	
-	$("idStop").onclick = function(){tv2.Auto = false; tv2.Stop();}
-	$("idStart").onclick = function(){tv2.Auto = true; tv2.Start();}
-	$("idNext").onclick = function(){tv2.Index++; tv2.Start();}
-	$("idPre").onclick = function(){tv2.Index--;tv2.Start();}
-	$("idFast").onclick = function(){ if(--tv2.Step <= 0){tv2.Step = 1;} }
-	$("idSlow").onclick = function(){ if(++tv2.Step >= 10){tv2.Step = 10;} }
-	$("idReduce").onclick = function(){ tv2.Pause-=1000; if(tv2.Pause <= 0){tv2.Pause = 0;} }
-	$("idAdd").onclick = function(){ tv2.Pause+=1000; if(tv2.Pause >= 5000){tv2.Pause = 5000;} }
+	// $("idStop").onclick = function(){tv2.Auto = false; tv2.Stop();}
+	// $("idStart").onclick = function(){tv2.Auto = true; tv2.Start();}
+	// $("idNext").onclick = function(){tv2.Index++; tv2.Start();}
+	// $("idPre").onclick = function(){tv2.Index--;tv2.Start();}
+	// $("idFast").onclick = function(){ if(--tv2.Step <= 0){tv2.Step = 1;} }
+	// $("idSlow").onclick = function(){ if(++tv2.Step >= 10){tv2.Step = 10;} }
+	// $("idReduce").onclick = function(){ tv2.Pause-=1000; if(tv2.Pause <= 0){tv2.Pause = 0;} }
+	// $("idAdd").onclick = function(){ tv2.Pause+=1000; if(tv2.Pause >= 5000){tv2.Pause = 5000;} }
 	
-	$("idReset").onclick = function(){
-		tv2.Step = Math.abs(tv2.options.Step);
-		tv2.Time = Math.abs(tv2.options.Time);
-		tv2.Auto = !!tv2.options.Auto;
-		tv2.Pause = Math.abs(tv2.options.Pause);
-	}
+	// $("idReset").onclick = function(){
+	// 	tv2.Step = Math.abs(tv2.options.Step);
+	// 	tv2.Time = Math.abs(tv2.options.Time);
+	// 	tv2.Auto = !!tv2.options.Auto;
+	// 	tv2.Pause = Math.abs(tv2.options.Pause);
+	// }
 	
 }
 </script>
  
  
  
-<div class="sale_box clearfix">
-<div class="tit"><span>特价商品</span></div>
- 
-      <div class="clearfix">
-                 
-           <ul class="clearfix">
-           <li class="goodsimg"><a href="goods.php?id=8"><img src="images/200905/thumb_img/8_thumb_G_1241425513488.jpg" border="0" alt="飞利浦9@9v" class="B_blue"/></a></li>
-			<li> <p><a href="goods.php?id=8" title="飞利浦9@9v">飞利浦9@9v</a></p>
-           促销价：<font class="f1">￥385元</font></li>
-           </ul>
-                 
-           <ul class="clearfix">
-           <li class="goodsimg"><a href="goods.php?id=32"><img src="images/200905/thumb_img/32_thumb_G_1242110760196.jpg" border="0" alt="诺基亚N85" class="B_blue"/></a></li>
-			<li> <p><a href="goods.php?id=32" title="诺基亚N85">诺基亚N85</a></p>
-           促销价：<font class="f1">￥2750元</font></li>
-           </ul>
-                </div>
- </div>
- 
-<div class="blank"></div>
- 
+<div class="sale_box clearfix" id="sale-box">
+    <a href="javascript:;" class="pre" id="idPre">上一个</a>
+    <ul id="slideBox">
+        <li class="first-node"><a href="#"><img src="demo-img/shot.png" /></a></li>
+        <li><a href="#"><img src="demo-img/shot.png" /></a></li>
+        <li><a href="#"><img src="demo-img/shot.png" /></a></li>
+        <li><a href="#"><img src="demo-img/shot.png" /></a></li>
+        <li><a href="#"><img src="demo-img/shot.png" /></a></li>
+    </ul>
+    <a href="javascript:;" class="next" id="idNext">下一个</a>
+<!--     <div class="num">
+      <ul  id="sale-num">
+        <li></li>
+        <li></li>
+        <li></li>    
+      </ul>
+  </div> -->
 </div>
  
+ <script type="text/javascript">
+var saleBox =function(){
+  function Each(list, fun){
+    for (var i = 0, len = list.length; i < len; i++) {fun(list[i], i);}
+  };
   
+  var tv = new TransformView("sale-box", "slideBox", 233, 3, {
+    onStart : function(){
+       
+    }//按钮样式
+  });
+  
+  tv.Start();
+
+  
+  $("idNext").onclick = function(){tv.Index++; tv.Start();}
+  $("idPre").onclick = function(){tv.Index--;tv.Start();}
+  
+  
+}
+saleBox();
+
+ </script>
+</div>
+
+
+ <!-- 新增 -->
+ <style type="text/css">
+ .side-box{
+      float: left;
+      margin-left: 0px;
+      width: 296px;
+      font-size: 12px;
+      border: 1px solid #e3e3e3;
+ }
+ .notice-box-tit{
+     margin-top: 10px;
+     height: 30px;
+     line-height: 30px;
+     font-size: 14px;
+ }
+  .notice-box-tit li{
+    float: left;
+    margin-left: -1px;
+    width: 50%;
+    text-align: center;
+    border-left: 1px solid #e3e3e3;
+  }
+  .notice-box-tit .first-node{
+     border-left: none;
+  }
+  .notice-list{
+    line-height: 24px;
+  }
+  .notice-list-hidden{
+    display: none;
+  }
+  .notice-list-item{
+    padding: 8px 10px;
+  }
+  .notice-list-two li{
+     float: left;
+     width: 50%;
+  }
+  
+  .sale-product{
+    padding: 13px 0px;
+    text-align: center;
+  }
+  .sale-product h5{
+      padding-left: 10px;
+      margin-bottom: 10px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 14px;
+      color: #fff;
+      text-align: left;
+      background: #fd463e;
+  }
+  .sale-product-note{
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #fff;
+    background: #b4b4b5;
+  }
+ </style> 
+ <div class="side-box">
+
+    <div class="notice">
+       <ul class="notice-box-tit">
+          <li class="first-node">促销</li>
+          <li>公告</li>
+       </ul>
+       
+       <div class="notice-list">
+           <div class="notice-list-item notice-list-two clearfix">
+              <ul>
+                  <li>全民彩票7折</li>
+                  <li>全民彩票7折</li>
+                  <li>全民彩票7折</li>
+                  <li>全民彩票7折</li>
+                  <li>全民彩票7折</li>
+                  <li>全民彩票7折</li>
+                  <li>全民彩票7折</li>
+                  <li>全民彩票7折</li>
+                  <li>全民彩票7折</li>
+                  <li>全民彩票7折</li>
+              </ul>
+           </div>
+           <div class="notice-list-hidden">
+               <ul>
+                  <li>7月促销季，全站打折哦</li>
+                  <li>7月促销季，全站打折哦</li>
+                  <li>7月促销季，全站打折哦</li>
+                  <li>7月促销季，全站打折哦</li>
+                  <li>7月促销季，全站打折哦</li>
+               </ul>
+           </div>
+       </div>
+    
+    </div>
+
+     <div class="sale-product">
+         <h5>特价推荐</h5>
+         <a href="#">
+            <img src="demo-img/sale.png" />
+            <div class="sale-product-note">月饼3折起</div>
+         </a>
+     </div>
+
+ </div>
+  
+
+ <!-- 新增结束  -->  
+</div>
     <div class="blank"></div> 
  
   
