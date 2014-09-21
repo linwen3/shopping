@@ -773,9 +773,6 @@ var process_request = "正在处理您的请求...";
  
 </dl>
 </div>
-<div class="blank"></div>
-
-<div class="blank"></div>
     
   </div>
 
@@ -800,8 +797,8 @@ var process_request = "正在处理您的请求...";
 	color: #333;
 	text-align: center;
 	line-height: 16px;
-	width: 16px;
-	height: 16px;
+	width: 12px;
+	height: 12px;
 	font-family: Arial;
 	font-size: 12px;
 	cursor: pointer;
@@ -809,17 +806,15 @@ var process_request = "正在处理您的请求...";
 	margin: 3px 1px;
 	border: 1px solid #E60012;
 	background-color: #fff;
+  border-radius: 6px;
 }
 .num li.on{
 	color: #fff;
 	line-height: 21px;
-	width: 21px;
-	height: 21px;
-	font-size: 16px;
-	margin: 0 1px;
+	width: 14px;
+	height: 14px;
 	border: 0;
 	background-color: #E60012;
-	font-weight: bold;
 }
 </style>
 <div class="container" id="idTransformView">
@@ -1061,11 +1056,11 @@ saleBox();
       width: 296px;
       font-size: 12px;
       border: 1px solid #e3e3e3;
+      border-top: 0px;
  }
  .notice-box-tit{
-     margin-top: 10px;
-     height: 30px;
-     line-height: 30px;
+     height: 35px;
+     line-height: 35px;
      font-size: 14px;
  }
   .notice-box-tit li{
@@ -1074,9 +1069,13 @@ saleBox();
     width: 50%;
     text-align: center;
     border-left: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
   }
   .notice-box-tit .first-node{
      border-left: none;
+  }
+  .notice-box-tit  .current{
+    border-bottom: 0px;
   }
   .notice-list{
     line-height: 24px;
@@ -1085,7 +1084,10 @@ saleBox();
     display: none;
   }
   .notice-list-item{
-    padding: 8px 10px;
+    padding: 8px 15px;
+  }
+  .notice-list-item ul{
+    margin-top: 6px;
   }
   .notice-list-two li{
      float: left;
@@ -1117,13 +1119,13 @@ saleBox();
  <div class="side-box">
 
     <div class="notice">
-       <ul class="notice-box-tit">
-          <li class="first-node">促销</li>
+       <ul class="notice-box-tit" id="J_noticeBox">
+          <li class="first-node current">促销</li>
           <li>公告</li>
        </ul>
        
-       <div class="notice-list">
-           <div class="notice-list-item notice-list-two clearfix">
+       <div class="notice-list" id="J_noteList">
+           <div class="notice-list-item notice-list-two  J_list clearfix">
               <ul>
                   <li>全民彩票7折</li>
                   <li>全民彩票7折</li>
@@ -1137,7 +1139,7 @@ saleBox();
                   <li>全民彩票7折</li>
               </ul>
            </div>
-           <div class="notice-list-hidden">
+           <div class="notice-list-item notice-list-hidden J_list">
                <ul>
                   <li>7月促销季，全站打折哦</li>
                   <li>7月促销季，全站打折哦</li>
@@ -1159,167 +1161,147 @@ saleBox();
      </div>
 
  </div>
-  
+ <script type="text/javascript">
+ var liAll = document.getElementById('J_noticeBox').getElementsByTagName('li');
+ var len = liAll.length;
+
+ var listAll = document.getElementById('J_noteList').getElementsByClassName('J_list');
+ var listLen = listAll.length;
+
+ for(var i = 0; i < len; i++){
+    liAll[i].onclick = (function(i){
+        var index = i;
+        return function(){
+           for(var j = 0; j < listLen; j++){
+               listAll[j].style.display = 'none';
+
+               var old = liAll[j].className;
+               liAll[j].className = old.replace('current', '');
+
+           }
+           liAll[index].className += ' current';
+           listAll[index].style.display = 'block';
+        }
+    })(i);
+ }
+ </script>  
 
  <!-- 新增结束  -->  
 </div>
-    <div class="blank"></div> 
- 
-  
-  <div class="goodsBox_1">
-  
-  
-  
-<div class="xm-box">
-<h4 class="title"><span>新品上架</span> <a class="more" href="search.php?intro=new">更多</a></h4>
-<div class="blank"></div>
-<div id="show_new_area" class="clearfix">
-      <div class="goodsItem">
-       
-           <a href="goods.php?id=9"><img src="images/200905/thumb_img/9_thumb_G_1241511871555.jpg" alt="诺基亚E66" class="goodsimg" /></a><br />
-           <p class="f1"><a href="goods.php?id=9" title="诺基亚E66">诺基亚E66</a></p>
-           
-           
- 市场价：<font class="market">￥2758元</font> <br/>
-      
-           本店价：<font class="f1">
-                     ￥2298元                     </font>      
-		    
-        </div>
-    <div class="goodsItem">
-       
-           <a href="goods.php?id=1"><img src="images/200905/thumb_img/1_thumb_G_1240902890710.jpg" alt="KD876" class="goodsimg" /></a><br />
-           <p class="f1"><a href="goods.php?id=1" title="KD876">KD876</a></p>
-           
-           
- 市场价：<font class="market">￥1666元</font> <br/>
-      
-           本店价：<font class="f1">
-                     ￥1388元                     </font>      
-		    
-        </div>
-    <div class="goodsItem">
-       
-           <a href="goods.php?id=8"><img src="images/200905/thumb_img/8_thumb_G_1241425513488.jpg" alt="飞利浦9@9v" class="goodsimg" /></a><br />
-           <p class="f1"><a href="goods.php?id=8" title="飞利浦9@9v">飞利浦9@9v</a></p>
-           
-           
- 市场价：<font class="market">￥479元</font> <br/>
-      
-           本店价：<font class="f1">
-                     ￥385元                     </font>      
-		    
-        </div>
-   
-    </div>
+
 </div>
-<div class="blank"></div>
-  <div class="xm-box">
-<h4 class="title"><span>热卖商品</span> <a class="more" href="search.php?intro=hot">更多</a></h4>
-<div class="blank"></div>
-<div id="show_hot_area" class="clearfix">
-      <div class="goodsItem">
-       
-           <a href="goods.php?id=9"><img src="images/200905/thumb_img/9_thumb_G_1241511871555.jpg" alt="诺基亚E66" class="goodsimg" /></a><br />
-           <p class="f1"><a href="goods.php?id=9" title="诺基亚E66">诺基亚E66</a></p>
+
+<div class="block clearfix">
+ 
+  
+<div class="goodsBox_1">
+  
+    <div class="xm-box one-floor">
+        <h4 class="title"><span>1F 生活用品</span> <a class="more" href="search.php?intro=new">更多 &gt;</a></h4>
+
+        <div class="xm-box-product clearfix">
            
-           
- 市场价：<font class="market">￥2758元</font> <br/>
-      
-           本店价：<font class="f1">
-                     ￥2298元                     </font>      
-		    
+           <div class="xm-box-left">
+              <a href="#">
+                <img src="demo-img/floor-ad.jpg" />
+                <p>产品介绍 <span>9.5折</span></p>
+              </a>
+           </div>
+
+           <div class="xm-box-right">
+              <div class="xm-box-top clearfix">
+                <div class="xm-box-hot">
+                   <a href="#">
+                      <img src="demo-img/floor-ba.jpg" />
+                   </a>
+                </div>
+                <div class="xm-box-top-right">
+                  <a href="#">
+                    <img src="demo-img/floor-ri.jpg" />
+                  </a>
+                </div>
+
+              </div>
+              
+              <ul class="xm-box-buttom clearfix">
+                <li>
+                  <a href="#"><img src="demo-img/floor-bt.jpg" /></a>
+                </li>
+                <li>
+                  <a href="#"><img src="demo-img/floor-bt.jpg" /></a>
+                </li>
+                <li>
+                  <a href="#"><img src="demo-img/floor-bt.jpg" /></a>
+                </li>
+                <li>
+                  <a href="#"><img src="demo-img/floor-bt.jpg" /></a>
+                </li>
+              </ul>
+
+           </div>
+
         </div>
-    <div class="goodsItem">
+        
        
-           <a href="goods.php?id=1"><img src="images/200905/thumb_img/1_thumb_G_1240902890710.jpg" alt="KD876" class="goodsimg" /></a><br />
-           <p class="f1"><a href="goods.php?id=1" title="KD876">KD876</a></p>
-           
-           
- 市场价：<font class="market">￥1666元</font> <br/>
-      
-           本店价：<font class="f1">
-                     ￥1388元                     </font>      
-		    
-        </div>
-    <div class="goodsItem">
-       
-           <a href="goods.php?id=8"><img src="images/200905/thumb_img/8_thumb_G_1241425513488.jpg" alt="飞利浦9@9v" class="goodsimg" /></a><br />
-           <p class="f1"><a href="goods.php?id=8" title="飞利浦9@9v">飞利浦9@9v</a></p>
-           
-           
- 市场价：<font class="market">￥479元</font> <br/>
-      
-           本店价：<font class="f1">
-                     ￥385元                     </font>      
-		    
-        </div>
-   
     </div>
-</div>
-<div class="blank"></div>
-  <div class="xm-box">
-<h4 class="title"><span>精品推荐</span> <a class="more" href="search.php?intro=best">更多</a></h4>
-<div class="blank"></div>
-<div id="show_best_area" class="clearfix">
-      <div class="goodsItem">
-       
-           <a href="goods.php?id=9"><img src="images/200905/thumb_img/9_thumb_G_1241511871555.jpg" alt="诺基亚E66" class="goodsimg" /></a><br />
-           <p class="f1"><a href="goods.php?id=9" title="诺基亚E66">诺基亚E66</a></p>
+
+
+
+    <div class="xm-box two-floor">
+        <h4 class="title"><span>1F 生活用品</span> <a class="more" href="search.php?intro=new">更多 &gt;</a></h4>
+
+        <div class="xm-box-product clearfix">
            
-           
- 市场价：<font class="market">￥2758元</font> <br/>
-      
-           本店价：<font class="f1">
-                     ￥2298元                     </font>      
-		    
+           <div class="xm-box-left">
+              <a href="#">
+                <img src="demo-img/floor-ad.jpg" />
+                <p>产品介绍 <span>9.5折</span></p>
+              </a>
+           </div>
+
+           <div class="xm-box-right">
+              <div class="xm-box-top clearfix">
+                <div class="xm-box-hot">
+                   <a href="#">
+                      <img src="demo-img/floor-ba.jpg" />
+                   </a>
+                </div>
+                <div class="xm-box-top-right">
+                  <a href="#">
+                    <img src="demo-img/floor-ri.jpg" />
+                  </a>
+                </div>
+
+              </div>
+              
+              <ul class="xm-box-buttom clearfix">
+                <li>
+                  <a href="#"><img src="demo-img/floor-bt.jpg" /></a>
+                </li>
+                <li>
+                  <a href="#"><img src="demo-img/floor-bt.jpg" /></a>
+                </li>
+                <li>
+                  <a href="#"><img src="demo-img/floor-bt.jpg" /></a>
+                </li>
+                <li>
+                  <a href="#"><img src="demo-img/floor-bt.jpg" /></a>
+                </li>
+              </ul>
+
+           </div>
+
         </div>
-    <div class="goodsItem">
+        
        
-           <a href="goods.php?id=1"><img src="images/200905/thumb_img/1_thumb_G_1240902890710.jpg" alt="KD876" class="goodsimg" /></a><br />
-           <p class="f1"><a href="goods.php?id=1" title="KD876">KD876</a></p>
-           
-           
- 市场价：<font class="market">￥1666元</font> <br/>
-      
-           本店价：<font class="f1">
-                     ￥1388元                     </font>      
-		    
-        </div>
-    <div class="goodsItem">
-       
-           <a href="goods.php?id=8"><img src="images/200905/thumb_img/8_thumb_G_1241425513488.jpg" alt="飞利浦9@9v" class="goodsimg" /></a><br />
-           <p class="f1"><a href="goods.php?id=8" title="飞利浦9@9v">飞利浦9@9v</a></p>
-           
-           
- 市场价：<font class="market">￥479元</font> <br/>
-      
-           本店价：<font class="f1">
-                     ￥385元                     </font>      
-		    
-        </div>
-   
     </div>
+
+
+</div> 
+  
+
+
 </div>
-<div class="blank"></div>
-  
-<div class="xm-box">
-<h4 class="title"><span></span> <a class="more" href="">更多</a></h4>
-<div class="blank"></div>
-<div id="show_hot_area" class="clearfix">
- 
-          </div>
- 
- 
-</div>
-<div class="blank"></div>
-  </div> 
-  
-    </div>
-  
-  
-  
- 
     
 <a class="ecmoban" href="http://www.ecmoban.com" target="_blank" title="ecshop模板堂">ecshop模板堂</a>
  
